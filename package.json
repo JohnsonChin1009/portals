@@ -1,0 +1,48 @@
+{
+  "name": "portals",
+  "description": "a zkLogin sdk built for Polygon",
+  "version": "1.0.0",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnsonChin1009/portals.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnsonChin1009/portals/issues"
+  },
+  "homepage": "https://github.com/JohnsonChin1009/portals#readme",
+  "dependencies": {
+    "@noble/ed25519": "^2.2.3",
+    "axios": "^1.8.4",
+    "circomlib": "^2.0.5",
+    "circomlibjs": "^0.1.7",
+    "dotenv": "^16.4.7",
+    "elliptic": "^6.6.1",
+    "ethers": "^6.13.5",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "jwk-to-pem": "^2.0.7",
+    "snarkjs": "^0.7.5"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^5.0.0",
+    "@types/axios": "^0.9.36",
+    "@types/circomlibjs": "^0.1.6",
+    "@types/elliptic": "^6.4.18",
+    "@types/express": "^5.0.1",
+    "@types/jsonwebtoken": "^9.0.9",
+    "@types/jwk-to-pem": "^2.0.3",
+    "@types/snarkjs": "^0.7.9",
+    "hardhat": "^2.22.19"
+  }
+}
