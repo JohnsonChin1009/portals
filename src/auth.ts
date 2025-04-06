@@ -2,7 +2,8 @@ import * as axios from "axios";
 import * as querystring from "querystring";
 import * as dotenv from "dotenv";
 import * as jwt from "jsonwebtoken";
-import crypto from "crypto";
+import crypto, { randomBytes } from "crypto";
+import { ec as EC } from "elliptic";
 import jwkToPem from "jwk-to-pem";
 
 dotenv.config();
@@ -31,6 +32,24 @@ interface GoogleUser {
   picture: string;
 }
 
+const ec = new EC('secp256k1');
+
+// Generate ephemerally key pairs
+export function generateKeyPairs(): {privateKey: string, publicKey: string} {
+  const privateKey = randomBytes(32).toString('hex');  // Hexadecimal format
+
+  // Get the public key using the elliptic curve algorithm
+  const key = ec.keyFromPrivate(privateKey);
+
+  // Get the public key in compressed format (33 bytes)
+  const publicKey = key.getPublic(true, 'hex'); // 'true' for compressed format
+
+  return {
+      publicKey,
+      privateKey
+  };
+}
+
 // Generate Google OAuth URL
 export function generateGoogleOAuthUrl() {
   const googleOAuthUrl = "https://accounts.google.com/o/oauth2/v2/auth";
@@ -39,7 +58,7 @@ export function generateGoogleOAuthUrl() {
   const accessType = "offline";
 
   const nonce = crypto.randomBytes(16).toString("hex");
-
+  
   const url = `${googleOAuthUrl}?${querystring.stringify({
     client_id: CLIENT_ID,
     redirect_uri: REDIRECT_URI,
